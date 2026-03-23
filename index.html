@@ -3,10 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="google-site-verification" content="7hjk5JIaUpHDcUByAYZELpZOKvOUeRVbmSCTey6VBSk">
-  <meta name="description" content="SHA-3 Hashing algorithm explained clearly, with interactive visuals. Simple enough for students to code it as an exercise.">
-  <meta name="robots" content="nofollow">
-  <meta name="google" content="nositelinkssearchbox">
+  <meta name="description" content="Mô phỏng trực quan thuật toán SHA-3 từng bước.">
   <title>SHA-3 Visualization</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -576,45 +573,20 @@
   <section class="qa">
     <span class="hider">(–)</span>
     <span class="expander">(+)</span>
-    <h3>Hàm băm (hash function) là gì?</h3>
-    <p>Hàm băm là một hàm đơn giản <span class="important1">nhận vào một số</span> và <span class="important2">trả về một số</span>. Đầu vào là một số có thể <span class="important1">lớn tùy ý</span> (ví dụ từ -∞ đến +∞). Đầu ra là một số phải bị <span class="important2">giới hạn</span> (ví dụ từ 0 đến 10). Bất kỳ hàm nào thỏa mãn các tính chất này đều được gọi là hàm băm.</p>
-    <p>Ví dụ, hãy xem xét một hàm băm tên là f. Bạn có đoán được quy luật của hàm băm này không?</p>
-    <p class="math">f(5) = 5</p>
-    <p class="math">f(15) = 5</p>
-    <p class="math">f(24005) = 5</p>
-    <p class="math">f(11113) = 3</p>
-    <p class="math">f(111222333444555666) = 6</p>
-    <p>Như đã thấy trong các ví dụ trên, f có thể nhận vào các số nguyên lớn tùy ý, và chỉ trả về các số từ 0 đến 10. Quy luật ở đây là f đơn giản chỉ trả về chữ số cuối cùng của số đó. Vậy công thức tổng quát của f sẽ là:</p>
-    <p class="math">f(x) = x mod 10</p>
-    </p>
-  </section>
-  <section class="qa">
-    <span class="hider">(–)</span>
-    <span class="expander">(+)</span>
-    <h3>Hàm băm mật mã (cryptographic hash function) là gì?</h3>
-    <p>Một hàm băm được gọi là hàm băm mật mã hoặc an toàn khi rất khó để tìm thấy <span class="important1">va chạm (collisions)</span> trong hàm băm. Va chạm xảy ra khi chúng ta phát hiện hai đầu vào cho ra cùng một đầu ra. Hãy lấy hàm f mà chúng ta đã mô tả trước đó. f(5) và f(15) đều cho ra 5, vì vậy f được cho là có va chạm. Điều này làm cho f không an toàn. Đối với các ứng dụng mật mã, chúng ta mong muốn các hàm băm của mình phải <span class="important2">an toàn (secure)</span>.</p>
-    <p>Bây giờ hãy giới thiệu một hàm khác, gọi là g, là một hàm an toàn. Hàm này trả về các số từ 0 đến 10, giống như f. Bạn có đoán được quy luật của hàm băm này không?</p>
-    <p class="math">g(5) = 2</p>
-    <p class="math">g(15) = 3</p>
-    <p class="math">g(24005) = 6</p>
-    <p class="math">g(11113) = 1</p>
-    <p class="math">g(111222333444555666) = 7</p>
-    <p>Khác với f, hàm này không có quy luật rõ ràng. Giả sử chúng ta muốn tìm va chạm trong g bằng cách tính toán hàm với các đầu vào được chọn một cách có chủ đích. Vì chúng ta không biết quy luật, chúng ta tính g với các đầu vào ngẫu nhiên. Trong rường hợp tốt nhất, ngay trong lần thử đầu tiên chúng ta sẽ tìm thấy một va chạm. Tệ nhất, sau 5 lần thử nữa chúng ta mới tìm thấy va chạm. Nói chung, nếu một hàm băm trả về các số <span class="important2">từ 0 đến N</span>, nếu <span class="important1">mất N lần thử</span> để tìm ra va chạm, hàm đó được coi là an toàn.</p>
-  </section>
-  <section class="qa">
-    <span class="hider">(–)</span>
-    <span class="expander">(+)</span>
-    <h3>SHA-3 là gì?</h3>
-    <p>SHA-3, hay Thuật toán băm an toàn 3 (Secure Hashing Algorithm 3), là một nhóm các hàm băm được chứng minh là an toàn, và được sử dụng trong các ứng dụng mật mã như Ethereum. Viện Tiêu chuẩn và Công nghệ Quốc gia Hoa Kỳ (NIST) đã tổ chức một cuộc thi công khai vào năm 2006 để tìm ra các hàm băm tốt nhất. Năm 2012, <span class="important1">Thuật toán Keccak</span> đã được chọn là thuật toán chiến thắng của cuộc thi. Năm 2015, Keccak được chuẩn hóa dưới tên gọi <span class="important2">SHA-3</span>.</p>
-    <p>Có <span class="important2">6 biến thể</span> của họ hàm trong SHA-3: <span class="important1">sha3-224</span>, <span class="important2">sha3-256</span>, <span class="important1">sha3-384</span>, <span class="important2">sha3-512</span>, <span class="important1">shake128</span>, và <span class="important2">shake256</span>. Sự khác biệt nằm ở giới hạn trên của mã băm. Ví dụ, sha3-224 xuất ra mã băm 224-bit, tức là các số từ 0 đến 2^224. Con số này lớn đến mức trong thực tế bất khả thi để tìm thấy thuật toán va chạm.</p>
-    <p>Shake128 và Shake256 còn được gọi là <span class="important1">Hàm đầu ra mở rộng (Extended Output Functions - XOF)</span>. Giới hạn trên của các hàm này là một tham số tùy thuộc vào người dùng thiết lập.</p>
+    <h3>Giới thiệu SHA-3</h3>
+    <p>Mặc dù SHA-2 vẫn đang an toàn, nhưng do SHA-2 sử dụng chung cấu trúc Merkle-Damgård với các giải thuật đã bị bẻ gãy như SHA-1 và MD5 nên đã đặt ra yêu cầu cấp thiết về một phương án dự phòng chiến lược. Vào năm 2007 Viện Tiêu chuẩn và Công nghệ Quốc gia Hoa Kỳ (NIST) khởi xướng cuộc thi thiết kế hàm băm công khai nhằm tìm kiếm một tiêu chuẩn mới có cấu trúc khác biệt hoàn toàn với các thế hệ trước. Sau nhiều vòng đánh giá khắt khe, thuật toán Keccak đã được lựa chọn và chính thức chuẩn hóa thành SHA-3 (Secure Hash Algorithm 3) theo tiêu chuẩn FIPS PUB 202 vào năm 2015.</p>
+    <p>SHA-3 bao gồm 6 phiên bản:</p>
+    <ul>
+      <li><strong>SHA-3 với độ dài đầu ra cố định:</strong> gồm SHA3-224, SHA3-256, SHA3-384, SHA3-512. Các chỉ số phiên bản trên tương ứng với độ dài bit đầu ra. Ví dụ, SHA3-256 tạo ra mã băm 256 bit.</li>
+      <li><strong>SHA-3 với độ dài đầu ra tùy chỉnh:</strong> gọi là <strong>Extendable-Output Functions (XOFs)</strong>, gồm SHAKE128 và SHAKE256.</li>
+    </ul>
   </section>
   <section class="qa">
     <span class="hider">(–)</span>
     <span class="expander">(+)</span>
     <h3>Các tài liệu hữu ích khác về SHA-3?</h3>
-    <p><a href="https://chemejon.io/sha-3-explained/" class="href">SHA-3 Explained in Plain English</a> (Một bài giải thích khác)</p>
-    <p><a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf" class="href">NIST FIPS 202</a> (Bản thân tiêu chuẩn)</p>
+    <p><a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf" class="href">NIST FIPS 202</a> (Tài liệu chính thức)</p>
+    <p><a href="https://chemejon.io/sha-3-explained/" class="href">SHA-3 Explained</a> (Một bài giải thích khác)</p>
   </section>
 
   <section id="input">
@@ -650,7 +622,7 @@
 
   <section id="solution">
 
-      <h3>Lấy mảng bit (bit array)</h3>
+      <h3>Thu được mảng bit</h3>
 
       <section id="stringtobits">
         <p>Thông thường, SHA-3 được định nghĩa là một hàm mà đầu vào và đầu ra là một mảng các bit. Vì đầu vào của chúng ta là một chuỗi (string), trước tiên chúng ta phải chuyển chuỗi đó thành một mảng bit. Có nhiều bảng mã khác nhau, nhưng thông dụng nhất là <span class="important1">UTF-8</span>. Trước tiên chúng ta lấy các bytes của từng chữ cái:</p>
@@ -686,7 +658,7 @@
 
       
       <section id="paddingsection">
-        <h3>Đệm thêm bit (padding) và chia thành các khối (blocks)</h3>
+        <h3>Thêm padding và chia thành các block</h3>
 
         <p>Padding là quá trình thêm các bit dư thừa vào một mảng để mảng đó thỏa mãn một điều kiện nhất định. Đối với SHA-3, quy trình chung như sau:</p>
 
@@ -783,7 +755,7 @@
       </section>
 
       <section id="introtostate">
-        <h3>Giới thiệu về Trạng thái (State)</h3>
+        <h3>Giới thiệu về State</h3>
 
         <p>Ngoài các khối đầu vào, chúng ta cũng có khái niệm về <span class="important1">trạng thái (state)</span>. State là một chuỗi gồm 1600 bit mà chúng ta sẽ sử dụng như một bản nháp tính toán để tính mã băm. Ban đầu, tất cả 1600 bit này đều được đặt bằng 0. Trong suốt hướng dẫn này, các trạng thái sẽ được hiển thị dưới dạng <span class="important2">25 làn (lanes)</span> bởi <span class="important2">64 lát (slices)</span>. Trạng thái ban đầu:</p>
 
@@ -806,7 +778,7 @@
       </section>
 
       <section id="absorbingphase">
-        <h3>Giai đoạn Hấp thụ (Absorbing Phase)</h3>
+        <h3>Giai đoạn “Hấp thụ” (Absorbing Phase)</h3>
         <p>
           Bây giờ chúng ta đã có <span class="fillin"></span> khối đầu vào và trạng thái của chúng ta (ban đầu là toàn các số 0), chúng ta có thể chuyển sang bước tính toán của <span class="important1">giai đoạn hấp thụ (absorbing phase)</span>. Giai đoạn hấp thụ có thể tóm tắt như sau:
         </p>
@@ -1083,7 +1055,7 @@
 
 
       <section id="nonshakesqueezingphase">
-        <h3>Giai đoạn Vắt (Squeezing Phase)</h3>
+        <h3>Giai đoạn "Vắt" (Squeezing Phase)</h3>
         <p>
           Đối với các biến thể không phải shake, giai đoạn vắt khá đơn giản. Đầu tiên, hãy lấy d bit đầu tiên ra khỏi trạng thái cuối cùng. Nhóm các bit này thành các byte 8-bit. Các giá trị của d được cho dưới đây:
         </p>
