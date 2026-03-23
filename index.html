@@ -9,6 +9,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto+Slab&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --accent-pink: rgb(201, 91, 201);
+      --accent-green: rgb(20, 160, 60);
+      --accent-soft-green: rgb(103, 231, 139);
+      --soft-border: rgb(184, 184, 184);
+      --panel-border: rgb(48, 48, 48);
+      --radius-md: 16px;
+      --space-md: 20px;
+    }
 
     html, body {
       background-color: white;
@@ -19,6 +28,8 @@
     }
 
     body {
+      max-width: 1400px;
+      margin: 0 auto;
       padding: 20px;
     }
 
@@ -54,17 +65,14 @@
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
-      /* Remove default arrow */
-      /* background-image: url(...); */
-      /* Add custom arrow */
       background-color: white;
-      border: 2px dashed rgb(201, 91, 201);
+      border: 2px dashed var(--accent-pink);
       padding: 10px;
       margin-left: 10px;
       margin-right: 10px;
       min-width: max-content;
-      color: rgb(201, 91, 201);
-      font-size: medium;
+      color: var(--accent-pink);
+      font-size: 1rem;
       cursor: pointer;
     }
 
@@ -73,20 +81,13 @@
       -moz-appearance: none;
       appearance: none;
       background-color: white;
-      font-size: medium;
+      font-size: 1rem;
       padding: 10px;
       margin-left: 10px;
       margin-right: 10px;
-      
     }
 
-
-
-
-
-
     .qa h3 {
-      /* color: green; */
       cursor: pointer;
       padding-left: 30px;
     }
@@ -102,7 +103,6 @@
     .qa.expanded .expander {
       display: none;
     }
-
 
     .qa {
       position: relative; /* This is needed for (-) (+) to hover */
@@ -120,17 +120,14 @@
     }
 
     .important1 {
-      color: rgb(103, 231, 139);
+      color: var(--accent-soft-green);
       font-weight: bold;
     }
 
     .important2 {
-      color: rgb(201, 91, 201);
+      color: var(--accent-pink);
       font-weight: bold;
     }
-
-
-
 
     .normaltable {
       font-size: large;
@@ -154,14 +151,12 @@
       color: black;
     }
 
-
-
-
     #input {
-      /* background-color: rgb(19, 19, 19); */
-      border-radius: 20px;
-      margin-top: 200px;
-      margin-bottom: 200px;
+      border-radius: var(--radius-md);
+      margin-top: 80px;
+      margin-bottom: 80px;
+      padding: 16px;
+      border: 1px solid var(--soft-border);
     }
 
     #input .shakeLength {
@@ -175,14 +170,9 @@
     }
 
     #input .shakeLength.noError {
-      color: rgb(103, 231, 139);
-      border: 2px dashed rgb(103, 231, 139);
+      color: var(--accent-soft-green);
+      border: 2px dashed var(--accent-soft-green);
     }
-
-
-
-
-
 
     #stringInput, #bitsnbytesInput, #fileInput {
       -webkit-appearance: none;
@@ -190,31 +180,19 @@
       appearance: none;
       background-color: white;
       color: black;
-      border: 2px dashed rgb(184, 184, 184);
+      border: 2px dashed var(--soft-border);
       width: 100%;
-      height: 200px;
+      min-height: 180px;
       outline: none;
-      margin-top: 100px;
-      font-size: large;
+      margin-top: 24px;
+      font-size: 1rem;
       padding: 10px;
       overflow-x: auto;
     }
 
-
-
-
-
-
-
-
     #fileInput.entered {
       opacity: .5;
     }
-
-
-
-
-
 
     #inputErrorMsg {
       color: rgb(150, 19, 19);
@@ -225,7 +203,14 @@
       text-align: center;
     }
 
-
+    #solution > h1,
+    #paddingsection > h1,
+    #absorbingphase > h1,
+    #nonshakesqueezingphase > h1,
+    #squeezingphase > h1 {
+      margin: 40px 0 20px;
+      font-size: 1.7rem;
+    }
 
  .breakdowndiv {
   max-width: 100%;
@@ -234,11 +219,11 @@
  }
 
  .breakdown td:nth-child(even) {
-  color:rgb(103, 231, 139);
+  color: var(--accent-soft-green);
  }
 
  .breakdown td:nth-child(odd) {
-  color:rgb(201, 91, 201);
+  color: var(--accent-pink);
  }
 
  .breakdown td {
@@ -246,18 +231,15 @@
  }
 
  .breakdown tr:nth-of-type(1) {
-  /* background-color: yellow; */
   font-size: medium;
   text-align: center;
  }
 
  .breakdown tr:nth-of-type(2) {
-  /* background-color: orange; */
   font-size: xx-large;
   text-align: center;
   min-height: 50px;
  }
-
 
  #paddingsection .mathtable {
   margin: auto;
@@ -271,13 +253,11 @@
  }
 
  #paddingsection .mathtable td:nth-child(even) {
-  color: rgb(103, 231, 139);
+  color: var(--accent-soft-green);
  }
 
  #blocksafterpadding {
   max-width: 100%;
-  /* overflow-y: hidden;
-  overflow-x: scroll; */
   padding-top: 30px;
   padding-bottom: 30px;
   overflow-wrap: anywhere;
@@ -292,11 +272,11 @@
  }
 
  .pinkcolor {
-  color: rgb(201, 91, 201);
+  color: var(--accent-pink);
  }
 
  .greencolor {
-  color: rgb(103, 231, 139);
+  color: var(--accent-soft-green);
  }
 
  .goldcolor {
@@ -307,14 +287,12 @@
   color: lightcoral;
  }
 
-
-
- #solution, #paddingsection, #introtostate, #absorbingphase, #nonshakesqueezingphase, #squeezingphase {
-  margin-top: 200px;
+ #solution, #paddingsection, #absorbingphase, #nonshakesqueezingphase, #squeezingphase {
+  margin-top: 120px;
  }
 
  #solution {
-  margin-bottom: 500px;
+  margin-bottom: 240px;
  }
 
  #absorbingphase .fillin,
@@ -331,13 +309,12 @@
  #absorbphasecontroller button,
  #squeezephasecontroller button {
       background-color: white;
-      border: 2px dashed rgb(20, 160, 60);
-      /* border-radius: 10px; */
+    border: 2px dashed var(--accent-green);
       padding: 10px;
       margin-left: 0px;
       margin-right: 0px;
-      color: rgb(20, 160, 60);
-      font-size: medium;
+    color: var(--accent-green);
+    font-size: 1rem;
       cursor: pointer;
  }
 
@@ -355,12 +332,9 @@
 
  #absorbXorStep, #absorbThetaStep, #absorbRhoStep, #absorbPiStep, #absorbChiStep, #absorbIotaStep,
  #squeezeTakeStep, #squeezeThetaStep, #squeezeRhoStep, #squeezePiStep, #squeezeChiStep, #squeezeIotaStep {
-  border: 1px solid rgb(48, 48, 48);
+  border: 1px solid var(--panel-border);
   padding: 10px;
  }
-
- 
-
  .brightgreen {
   color: rgb(0, 255, 0);
   font-weight: bolder;
@@ -390,7 +364,6 @@
   color: rgb(94, 71, 71);
  }
 
-
    .gray {
     background-color: white;
     color: rgb(180, 180, 180);
@@ -416,7 +389,6 @@
     color: rgb(245, 245, 245);
   }
 
-
    .white {
     color: black;
     font-weight: bolder;
@@ -428,8 +400,6 @@
     color: rgb(61, 61, 61);
   }
 
-
-
     #githubLink {
       display: block;
       position: absolute;
@@ -437,15 +407,16 @@
       right: 20px;
     }
 
-
-
-
     .stateTransitionContainer {
       max-width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      align-items: flex-start;
+      justify-content: flex-start;
       overflow-y: hidden;
-      overflow-x: scroll;
+      overflow-x: auto;
     }
-
 
     .stateContainer {
       max-width: 100%;
@@ -456,7 +427,7 @@
     }
 
     .state {
-      display: inline-block;
+      display: block;
       line-height: 1;
       max-width: 100%;
       overflow-y: hidden;
@@ -468,11 +439,6 @@
       color: red;
     }
 
-    /* .state span {
-      padding-right: 1px;
-      padding-left: 1px;
-    } */
-
     .hidecursor {
       cursor: none;
     }
@@ -481,13 +447,19 @@
       color: rgb(119, 80, 141);
     }
 
-    .stateTransitionContainer {
-      text-align: center;
+    .stateTransitionContainer > * {
+      vertical-align: middle;
     }
 
-    .stateTransitionContainer > * {
-      vertical-align:middle;
-      display: inline-block;
+    .statePanel {
+      flex: 1 1 calc(50% - (var(--space-md) / 2));
+      min-width: 480px;
+    }
+
+    #absorbXorInputBlock,
+    #absorbIotaRoundConst,
+    #squeezeIotaRoundConst {
+      flex: 0 0 100%;
     }
 
     .stateTransitionContainer > .arrow {
@@ -497,18 +469,11 @@
 
     #absorbXorInputBlock, #absorbIotaRoundConst,
     #squeezeIotaRoundConst {
-      /* overflow-wrap: anywhere; */
       line-height: 1;
-      /* padding-left: 40px; */
-      /* max-width: 100%; */
-      /* overflow-y: scroll;
-      overflow-x: scroll; */
-      /* text-wrap: nowrap; */
       text-align: start;
       display: block;
-      width: fit-content;
-
-
+      width: 100%;
+      overflow-x: auto;
     }
 
     .perished {
@@ -521,7 +486,7 @@
     }
 
     .stateDescription {
-      padding-left: 40px;
+      padding-left: 0;
       padding-bottom: 0;
       margin-bottom: 0;
       text-align: start;
@@ -531,44 +496,14 @@
         display: none;
       }
 
-    
       .aBitOfMarginHere {
         margin-top: 200px;
       }
 
-
-/* 
-    @media only screen and (max-width: 1300px) {
-      #thisIsMobile {}
-
-      body {
-        padding: 20px;
-      }
-
-      .stateTransitionContainer > .arrow {
-        display: none;
-      }
-
-    }
-
-    @media only screen and (min-width: 1300px) {
-      #thisIsDesktop {}
-
-      body {
-        padding-left: 15%;
-        padding-right: 15%;
-      }
-
-    } */
-
-    
-
   </style>
 </head>
 <body>
-  
-  <h1>Mô phỏng trực quan thuật toán SHA-3 từng bước</h1>
-  <a id="githubLink" href="https://github.com/nvbangg/demo-sha">Github</a>
+  <a id="githubLink" href="https://github.com/nvbangg/demo-sha">GitHub</a>
 
   <section class="qa">
     <span class="hider">(–)</span>
@@ -588,6 +523,42 @@
     <p><a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf" class="href">NIST FIPS 202</a> (Tài liệu chính thức)</p>
     <p><a href="https://chemejon.io/sha-3-explained/" class="href">SHA-3 Explained</a> (Một bài giải thích khác)</p>
   </section>
+
+  <section class="qa">
+    <span class="hider">(–)</span>
+    <span class="expander">(+)</span>
+    <h3>Kiến trúc giải thuật</h3>
+    <h2>1. Giới thiệu về State</h2>
+    <p>Ngoài các khối đầu vào, chúng ta còn có khái niệm về <span class="important1">state</span>. State là một chuỗi gồm 1600 bit, được dùng như một bản nháp tính toán để tạo mã băm. Ban đầu, toàn bộ 1600 bit đều bằng 0. Trong suốt hướng dẫn này, State sẽ được hiển thị dưới dạng <span class="important2">25 lane</span> và <span class="important2">64 slice</span>. State ban đầu:</p>
+
+    <section id="introtostate">
+      <div class="stateContainer">
+        <ol class="state hidecursor" id="emptystate"></ol>
+        <p>
+          <span class="greencolor fillin"></span>
+          <span class="goldcolor fillin"></span>
+          <span class="redcolor fillin"></span>
+        </p>
+      </div>
+    </section>
+
+    <h2>2. Luồng hoạt động cấu trúc “Bọt biển” (Sponge Construction)</h2>
+    <p>Thuật toán SHA-3 sử dụng cấu trúc khác so với SHA khác gọi là cấu trúc bọt biển:</p>
+    <p>Cấu trúc bọt biển của SHA-3 hoạt động bằng cách:</p>
+    <ol>
+      <li>Chia dữ liệu đầu vào thành các block r bit (r<sub>1</sub>, r<sub>2</sub>, ..., r<sub>n-1</sub>); State khởi tạo đều là 0.</li>
+      <li>Phần Rate được thực hiện phép XOR với khối r<sub>1</sub> đầu tiên.</li>
+      <li>Rate và Capacity kết hợp lại được đưa qua một function bao gồm nhiều vòng.</li>
+      <li>r bit đầu tiên của function là Rate và c bit còn lại là Capacity.</li>
+      <li>Phần Rate được XOR với r<sub>2</sub> và kết hợp với Capacity nạp vào một function khác.</li>
+      <li>Quá trình này được thực hiện cho đến khi không còn khối dữ liệu nào dư lại.</li>
+      <li>Ở khối dữ liệu cuối cùng, mã băm (hash) được lấy từ r bit đầu ra của function.</li>
+      <li>Nếu cần thêm các bit đầu ra, phần Rate và Capacity ở trên sẽ được nạp qua function mà không cần nhập thêm bất kỳ dữ liệu nào để tiếp tục lấy r bit từ đầu ra đến khi đủ.</li>
+    </ol>
+    <p style="text-align: center;"><img src="assets/sponge-diagram.png" alt="Sơ đồ cấu trúc bọt biển của SHA-3" style="max-width: 100%; height: auto;"></p>
+  </section>
+
+  <h1>Mô phỏng trực quan thuật toán SHA-3 từng bước</h1>
 
   <section id="input">
     <p>Tôi muốn tính một mã băm
@@ -610,7 +581,6 @@
       <textarea id="stringInput" placeholder="Nhập văn bản của bạn vào đây...">Hello world!</textarea>
 
       <textarea id="bitsnbytesInput" placeholder="Nhập bits và bytes của bạn vào đây... &NewLine;Ví dụ: 5f 3a d9 0A ++-- &NewLine;Các chữ số thập lục phân 'a' đến 'f' không phân biệt chữ hoa chữ thường. Dấu - và + lần lượt đại diện cho các bit 0 và 1. Có thể cần thêm các bit vào cuối khi các bit không chia hết cho 8. Khoảng trắng, bao gồm cả xuống dòng (newlines), sẽ bị bỏ qua.
-      
       "></textarea>
 
       <textarea id="fileInput" placeholder="Kéo và thả tệp của bạn vào đây, hoặc nhấp để chọn." readonly></textarea>
@@ -622,7 +592,7 @@
 
   <section id="solution">
 
-      <h3>Thu được mảng bit</h3>
+      <h1>1. Thu được mảng bit</h1>
 
       <section id="stringtobits">
         <p>Thông thường, SHA-3 được định nghĩa là một hàm mà đầu vào và đầu ra là một mảng các bit. Vì đầu vào của chúng ta là một chuỗi (string), trước tiên chúng ta phải chuyển chuỗi đó thành một mảng bit. Có nhiều bảng mã khác nhau, nhưng thông dụng nhất là <span class="important1">UTF-8</span>. Trước tiên chúng ta lấy các bytes của từng chữ cái:</p>
@@ -656,14 +626,11 @@
 
       <p>Lưu ý rằng việc không thu được bit nào tại thời điểm này là bình thường. Điều này xảy ra khi nhập vào một chuỗi rỗng hoặc tệp trống.</p>
 
-      
       <section id="paddingsection">
-        <h3>Thêm padding và chia thành các block</h3>
-
+        <h1>2. Thêm padding và chia thành các block</h1>
         <p>Padding là quá trình thêm các bit dư thừa vào một mảng để mảng đó thỏa mãn một điều kiện nhất định. Đối với SHA-3, quy trình chung như sau:</p>
 
         <p class="math">bits + (<span class="important1">01</span> hoặc <span class="important1">1111</span>) + <span class="important1">1</span> + n số 0 + <span class="important1">1</span></p>
-
         <ul>
           <li>Bắt đầu với mảng bit mà chúng ta nhận được lúc trước.</li>
           <li>Nếu biến thể SHA-3 chúng ta chọn là shake128 hoặc shake256, hãy nối thêm <span class="important1">1111</span>; nếu không, hãy nối thêm <span class="important1">01</span>.</li>
@@ -671,8 +638,6 @@
           <li>Nối thêm các số 0 cho đến khi độ dài của toàn bộ chuỗi là một bội số của r. Các giá trị của r được liệt kê bên dưới.</li>
           <li>Nối thêm số 1.</li>
         </ul>
-        
-
         <table class="normaltable">
           <thead>
             <td>Biến thể SHA-3</td>
@@ -705,8 +670,7 @@
             </tr>
           </tbody>
         </table>
-
-        <p>Để tìm xem cần đặt bao nhiêu số 0, ta tính toán</p>
+        <p>Để tìm xem cần đặt bao nhiêu số 0, ta tính toán:</p>
 
         <div id="howmanyzerostoput">
           <table class="mathtable">
@@ -737,8 +701,7 @@
               </tr>
             </tbody>
           </table>
-
-        </div>
+            </div>
 
         <p class="math">= <span class="fillin"></span> + n</p>
         <p>Bây giờ chúng ta cần tìm số n nhỏ nhất thỏa mãn điều kiện sau:</p>
@@ -754,39 +717,16 @@
 
       </section>
 
-      <section id="introtostate">
-        <h3>Giới thiệu về State</h3>
-
-        <p>Ngoài các khối đầu vào, chúng ta cũng có khái niệm về <span class="important1">trạng thái (state)</span>. State là một chuỗi gồm 1600 bit mà chúng ta sẽ sử dụng như một bản nháp tính toán để tính mã băm. Ban đầu, tất cả 1600 bit này đều được đặt bằng 0. Trong suốt hướng dẫn này, các trạng thái sẽ được hiển thị dưới dạng <span class="important2">25 làn (lanes)</span> bởi <span class="important2">64 lát (slices)</span>. Trạng thái ban đầu:</p>
-
-        <!-- <div class="stateTransitionContainer">
-          <ol class="state" id="emptystate">
-          </ol>
-          <span class="arrow">➔</span>
-          <ol class="state" id="emptystate2">
-          </ol>
-        </div> -->
-
-        <div class="stateContainer">
-        <ol class="state hidecursor" id="emptystate"></ol>
-          <p>
-            <span class="greencolor fillin"></span>
-            <span class="goldcolor fillin"></span>
-            <span class="redcolor fillin"></span>
-          </p>
-        </div>
-      </section>
-
       <section id="absorbingphase">
-        <h3>Giai đoạn “Hấp thụ” (Absorbing Phase)</h3>
+        <h1>3. Giai đoạn “Hấp thụ” (Absorbing Phase)</h1>
         <p>
-          Bây giờ chúng ta đã có <span class="fillin"></span> khối đầu vào và trạng thái của chúng ta (ban đầu là toàn các số 0), chúng ta có thể chuyển sang bước tính toán của <span class="important1">giai đoạn hấp thụ (absorbing phase)</span>. Giai đoạn hấp thụ có thể tóm tắt như sau:
+          Bây giờ chúng ta đã có <span class="fillin"></span> khối đầu vào và State (ban đầu là toàn số 0), chúng ta có thể chuyển sang bước tính toán của <span class="important1">giai đoạn hấp thụ (absorbing phase)</span>. Giai đoạn hấp thụ có thể tóm tắt như sau:
         </p>
         <ul>
           <li>
             Đối với mỗi khối đầu vào:
             <ul>
-              <li>Xor(state, input block)</li>
+              <li>Xor(state, khối đầu vào)</li>
               <li>
                 Trong 24 vòng (rounds):
                 <ul>
@@ -802,14 +742,14 @@
         </ul>
 
         <p>
-          Mẹo: Di chuột lên trên mỗi bit ở trong trạng thái kết quả (resulting state) để xem cách bit đó được tính ra.
+          Mẹo: Di chuột lên từng bit trong State kết quả (resulting state) để xem cách bit đó được tính ra.
         </p>
 
         <p id="absorbphasecontroller">
-          Input block <select id="absorbBlockSelector">
+          Khối đầu vào <select id="absorbBlockSelector">
 
           </select>
-          , step
+          , bước
           <select id="absorbFnSelector">
             <option value="0">Xor </option>
             <option value="1">Theta (round 1)</option>
@@ -941,18 +881,17 @@
 
         <section id="absorbXorStep">
           <p>
-            Trong bước Xor, chúng ta thực hiện phép toán Xor trên các bit của khối đầu vào hiện tại và trạng thái, bắt đầu từ bit đầu tiên trở đi. Trạng thái luôn dài hơn khối đầu vào, vì vậy một vài bit cuối cùng sẽ không thay đổi. Khối đầu vào:
+            Trong bước XOR, chúng ta thực hiện phép XOR giữa các bit của khối đầu vào hiện tại và State, bắt đầu từ bit đầu tiên. State luôn dài hơn khối đầu vào, vì vậy một số bit cuối sẽ không thay đổi. Khối đầu vào:
           </p>
           <div class="stateTransitionContainer">
             <div id="absorbXorInputBlock"></div>
-            <br>
-            <div>
-              <p class="stateDescription">Trạng thái trước khi tính toán:</p>
+            <div class="statePanel">
+              <p class="stateDescription">State trước khi tính toán:</p>
               <ol class="state">
               </ol>
             </div>
-            <div>
-              <p class="stateDescription">Trạng thái sau khi tính toán:</p>
+            <div class="statePanel">
+              <p class="stateDescription">State sau khi tính toán:</p>
               <ol class="state hidecursor">
               </ol>
             </div>
@@ -961,16 +900,16 @@
         </section>
         <section id="absorbThetaStep">
           <p>
-            Trong bước Theta, 5 bit từ cùng một lát (slice), 5 bit từ lát bên cạnh và bit gốc đều được xor với nhau. Một cách dễ hiểu hơn là tính tổng các bit được đánh dấu, và xem kết quả có phải là số lẻ hay không.
+            Trong bước Theta, 5 bit từ cùng một slice, 5 bit từ slice bên cạnh và bit gốc đều được XOR với nhau. Cách dễ hiểu hơn là tính tổng các bit được đánh dấu và kiểm tra xem kết quả có phải số lẻ hay không.
           </p>
           <div class="stateTransitionContainer">
-            <div>
-              <p class="stateDescription">Trạng thái trước khi tính toán:</p>
+            <div class="statePanel">
+              <p class="stateDescription">State trước khi tính toán:</p>
               <ol class="state">
               </ol>
             </div>
-            <div>
-              <p class="stateDescription">Trạng thái sau khi tính toán:</p>
+            <div class="statePanel">
+              <p class="stateDescription">State sau khi tính toán:</p>
               <ol class="state hidecursor">
               </ol>
             </div>
@@ -979,16 +918,16 @@
         </section>
         <section id="absorbRhoStep">
           <p>
-            Trong bước Rho, làn (lane) được chọn sẽ được xoay (rotate) sang phải mặt một khoảng, tuỳ thuộc vào làn đó là làn nào. Khoảng cách để xoay lần lượt là 0, 1, 62, 28, 27, 36, 44, 6, 55, 20, 3, 10, 43, 25, 39, 41, 45, 15, 21, 8, 18, 2, 61, 56, 14.
+            Trong bước Rho, lane được chọn sẽ được xoay (rotate) sang phải một lượng nhất định, tùy thuộc lane đó là lane nào. Lượng xoay lần lượt là 0, 1, 62, 28, 27, 36, 44, 6, 55, 20, 3, 10, 43, 25, 39, 41, 45, 15, 21, 8, 18, 2, 61, 56, 14.
           </p>
           <div class="stateTransitionContainer">
-            <div>
-              <p class="stateDescription">Trạng thái trước khi tính toán:</p>
+            <div class="statePanel">
+              <p class="stateDescription">State trước khi tính toán:</p>
               <ol class="state">
               </ol>
             </div>
-            <div>
-              <p class="stateDescription">Trạng thái sau khi tính toán:</p>
+            <div class="statePanel">
+              <p class="stateDescription">State sau khi tính toán:</p>
               <ol class="state hidecursor">
               </ol>
             </div>
@@ -997,16 +936,16 @@
         </section>
         <section id="absorbPiStep">
           <p>
-            Trong bước Pi, các làn được sắp xếp lại. Thứ tự mới của các làn lần lượt là 1, 7, 13, 19, 25, 4, 10, 11, 17, 23, 2, 8, 14, 20, 21, 5, 6, 12, 18, 24, 3, 9, 15, 16, 22. Nghĩa là, làn đầu tiên giữ nguyên vị trí, trong khi làn thứ hai trở thành làn thứ 7, và cứ như vậy.
+            Trong bước Pi, các lane được sắp xếp lại. Thứ tự mới của các lane lần lượt là 1, 7, 13, 19, 25, 4, 10, 11, 17, 23, 2, 8, 14, 20, 21, 5, 6, 12, 18, 24, 3, 9, 15, 16, 22. Nghĩa là lane đầu tiên giữ nguyên vị trí, lane thứ hai trở thành lane thứ 7, và tiếp tục như vậy.
           </p>
           <div class="stateTransitionContainer">
-            <div>
-              <p class="stateDescription">Trạng thái trước khi tính toán:</p>
+            <div class="statePanel">
+              <p class="stateDescription">State trước khi tính toán:</p>
               <ol class="state">
               </ol>
             </div>
-            <div>
-              <p class="stateDescription">Trạng thái sau khi tính toán:</p>
+            <div class="statePanel">
+              <p class="stateDescription">State sau khi tính toán:</p>
               <ol class="state hidecursor">
               </ol>
             </div>
@@ -1015,16 +954,16 @@
         </section>
         <section id="absorbChiStep">
           <p>
-            Trong bước Chi, đầu tiên chúng ta chia trạng thái thành các nhóm 5 làn, sau đó chọn bit đang xét và hai bit bên dưới nó trong cùng một nhóm. Kết quả được tính theo công thức: <span class="greencolor">xanh lá</span> xor ( (not <span class="goldcolor">vàng</span>) and <span class="redcolor">đỏ</span> ).
+            Trong bước Chi, trước hết chúng ta chia State thành các nhóm 5 lane, sau đó chọn bit đang xét và hai bit bên dưới nó trong cùng một nhóm. Kết quả được tính theo công thức: <span class="greencolor">xanh lá</span> xor ( (not <span class="goldcolor">vàng</span>) and <span class="redcolor">đỏ</span> ).
           </p>
           <div class="stateTransitionContainer">
-            <div>
-              <p class="stateDescription">Trạng thái trước khi tính toán:</p>
+            <div class="statePanel">
+              <p class="stateDescription">State trước khi tính toán:</p>
               <ol class="state">
               </ol>
             </div>
-            <div>
-              <p class="stateDescription">Trạng thái sau khi tính toán:</p>
+            <div class="statePanel">
+              <p class="stateDescription">State sau khi tính toán:</p>
               <ol class="state hidecursor">
               </ol>
             </div>
@@ -1033,18 +972,17 @@
         </section>
         <section id="absorbIotaStep">
           <p>
-            Trong bước Iota, chỉ có làn đầu tiên bị thay đổi, trong khi các làn còn lại được giữ nguyên. Các bit của làn đầu tiên được xor với một hằng số, được cho bên dưới. Lưu ý rằng hằng số được sử dụng tùy thuộc vào vòng (round) hiện tại.
+            Trong bước Iota, chỉ có lane đầu tiên thay đổi, còn các lane còn lại giữ nguyên. Các bit của lane đầu tiên được XOR với một hằng số như bên dưới. Lưu ý rằng hằng số sử dụng phụ thuộc vào vòng (round) hiện tại.
           </p>
           <div class="stateTransitionContainer">
             <ol id="absorbIotaRoundConst"></ol>
-            <br>
-            <div>
-              <p class="stateDescription">Trạng thái trước khi tính toán:</p>
+            <div class="statePanel">
+              <p class="stateDescription">State trước khi tính toán:</p>
               <ol class="state">
               </ol>
             </div>
-            <div>
-              <p class="stateDescription">Trạng thái sau khi tính toán:</p>
+            <div class="statePanel">
+              <p class="stateDescription">State sau khi tính toán:</p>
               <ol class="state hidecursor">
               </ol>
             </div>
@@ -1053,11 +991,10 @@
         </section>
       </section>
 
-
       <section id="nonshakesqueezingphase">
-        <h3>Giai đoạn "Vắt" (Squeezing Phase)</h3>
+        <h1>4. Giai đoạn "Vắt" (Squeezing Phase)</h1>
         <p>
-          Đối với các biến thể không phải shake, giai đoạn vắt khá đơn giản. Đầu tiên, hãy lấy d bit đầu tiên ra khỏi trạng thái cuối cùng. Nhóm các bit này thành các byte 8-bit. Các giá trị của d được cho dưới đây:
+          Đối với các biến thể không phải shake, giai đoạn vắt khá đơn giản. Đầu tiên, hãy lấy d bit đầu tiên từ State cuối cùng. Nhóm các bit này thành các byte 8-bit. Các giá trị của d được cho dưới đây:
         </p>
 
         <table class="normaltable">
@@ -1068,24 +1005,24 @@
           <tbody>
             <tr>
               <td>sha3-224</td>
-              <td>224 bits</td>
+              <td>224 bit</td>
             </tr>
             <tr>
               <td>sha3-256</td>
-              <td>256 bits</td>
+              <td>256 bit</td>
             </tr>
             <tr>
               <td>sha3-384</td>
-              <td>384 bits</td>
+              <td>384 bit</td>
             </tr>
             <tr>
               <td>sha3-512</td>
-              <td>512 bits</td>
+              <td>512 bit</td>
             </tr>
           </tbody>
         </table>
 
-        <p class="stateDescription">Trạng thái cuối cùng:</p>
+        <p class="stateDescription">State cuối cùng:</p>
         <ol class="state"></ol>
 
         <p>
@@ -1099,7 +1036,7 @@
       </section>
 
       <section id="squeezingphase">
-        <h3>Giai đoạn Vắt (Squeezing Phase)</h3>
+        <h1>4. Giai đoạn "Vắt" (Squeezing Phase)</h1>
         <p>
           Đối với các biến thể shake128 và shake256, chúng ta thực hiện như sau:
         </p>
@@ -1108,7 +1045,7 @@
           <li>Cho arr là một mảng bit trống.</li>
           <li>Lặp lại cho đến khi cần thiết:</li>
           <ul>
-            <li>Thêm r bit đầu tiên của trạng thái vào mảng arr. Dừng lại nếu arr đã đủ dài.</li>
+            <li>Thêm r bit đầu tiên của State vào mảng arr. Dừng lại nếu arr đã đủ dài.</li>
             <li>
               Trong 24 vòng (rounds):
               <ul>
@@ -1132,11 +1069,11 @@
           <tbody>
             <tr>
               <td>shake128</td>
-              <td>1344 bits</td>
+              <td>1344 bit</td>
             </tr>
             <tr>
               <td>shake256</td>
-              <td>1088 bits</td>
+              <td>1088 bit</td>
             </tr>
           </tbody>
         </table>
@@ -1276,23 +1213,23 @@
         
         <section id="squeezeTakeStep">
           <p>
-            Trong bước Lấy (Take step), chúng ta lấy r bit đầu tiên (đối với <span class="fillin"></span> nó là <span class="fillin"></span>) và nối chúng vào mảng đầu ra. Kích thước của mảng đầu ra đã tăng từ <span class="fillin"></span> lên <span class="fillin"></span>. Trạng thái không thay đổi.
+            Trong bước Lấy (Take step), chúng ta lấy r bit đầu tiên (đối với <span class="fillin"></span> là <span class="fillin"></span>) và nối vào mảng đầu ra. Kích thước mảng đầu ra tăng từ <span class="fillin"></span> lên <span class="fillin"></span>. State không thay đổi.
           </p>
           <p class="nonfinalstep">
-            Kích thước của mảng đầu ra chưa đạt đến kích thước mong muốn (d=<span class="fillin"></span> bits), vì vậy chúng ta tiếp tục với các bước Theta-Rho-Pi-Chi-Iota.
+            Kích thước của mảng đầu ra chưa đạt đến kích thước mong muốn (d=<span class="fillin"></span> bit), vì vậy chúng ta tiếp tục với các bước Theta-Rho-Pi-Chi-Iota.
           </p>
           <p class="finalstep">
-            Kích thước của mảng đầu ra đã đạt và vượt qua kích thước mong muốn (d=<span class="fillin"></span> bits), vì vậy chúng ta không cần phải thực hiện các bước Theta-Rho-Pi-Chi-Iota nữa. Chúng ta loại bỏ <span class="fillin"></span>-<span class="fillin"></span>=<span class="fillin"></span> bị dư.
+            Kích thước của mảng đầu ra đã đạt và vượt qua kích thước mong muốn (d=<span class="fillin"></span> bit), vì vậy chúng ta không cần phải thực hiện các bước Theta-Rho-Pi-Chi-Iota nữa. Chúng ta loại bỏ <span class="fillin"></span>-<span class="fillin"></span>=<span class="fillin"></span> bit dư.
           </p>
           
           <div class="stateTransitionContainer">
             <div>
-              <p class="stateDescription">Trạng thái:</p>
+              <p class="stateDescription">State:</p>
               <ol class="state">
               </ol>
             </div>
             <div style="display: none;">
-              <p class="stateDescription">Trạng thái sau khi tính toán:</p>
+              <p class="stateDescription">State sau khi tính toán:</p>
               <ol class="state hidecursor">
               </ol>
             </div>
@@ -1301,16 +1238,16 @@
         </section>
         <section id="squeezeThetaStep">
           <p>
-            Trong bước Theta, 5 bit từ cùng một lát (slice), 5 bit từ lát bên cạnh và bit gốc đều được xor với nhau. Một cách dễ hiểu hơn là tính tổng các bit được đánh dấu, và xem kết quả có phải là số lẻ hay không.
+            Trong bước Theta, 5 bit từ cùng một slice, 5 bit từ slice bên cạnh và bit gốc đều được XOR với nhau. Cách dễ hiểu hơn là tính tổng các bit được đánh dấu và kiểm tra xem kết quả có phải số lẻ hay không.
           </p>
           <div class="stateTransitionContainer">
-            <div>
-              <p class="stateDescription">Trạng thái trước khi tính toán:</p>
+            <div class="statePanel">
+              <p class="stateDescription">State trước khi tính toán:</p>
               <ol class="state">
               </ol>
             </div>
-            <div>
-              <p class="stateDescription">Trạng thái sau khi tính toán:</p>
+            <div class="statePanel">
+              <p class="stateDescription">State sau khi tính toán:</p>
               <ol class="state hidecursor">
               </ol>
             </div>
@@ -1319,16 +1256,16 @@
         </section>
         <section id="squeezeRhoStep">
           <p>
-            Trong bước Rho, làn (lane) được chọn sẽ được xoay (rotate) sang phải thêm một số lượng nhất định, tùy thuộc vào làn đó là làn nào. Số lượng vị trí xoay lần lượt là 0, 1, 62, 28, 27, 36, 44, 6, 55, 20, 3, 10, 43, 25, 39, 41, 45, 15, 21, 8, 18, 2, 61, 56, 14.
+            Trong bước Rho, lane được chọn sẽ được xoay (rotate) sang phải một lượng nhất định, tùy thuộc lane đó là lane nào. Lượng xoay lần lượt là 0, 1, 62, 28, 27, 36, 44, 6, 55, 20, 3, 10, 43, 25, 39, 41, 45, 15, 21, 8, 18, 2, 61, 56, 14.
           </p>
           <div class="stateTransitionContainer">
-            <div>
-              <p class="stateDescription">Trạng thái trước khi tính toán:</p>
+            <div class="statePanel">
+              <p class="stateDescription">State trước khi tính toán:</p>
               <ol class="state">
               </ol>
             </div>
-            <div>
-              <p class="stateDescription">Trạng thái sau khi tính toán:</p>
+            <div class="statePanel">
+              <p class="stateDescription">State sau khi tính toán:</p>
               <ol class="state hidecursor">
               </ol>
             </div>
@@ -1337,16 +1274,16 @@
         </section>
         <section id="squeezePiStep">
           <p>
-            Trong bước Pi, các làn được sắp xếp lại. Thứ tự mới của các làn lần lượt là 1, 7, 13, 19, 25, 4, 10, 11, 17, 23, 2, 8, 14, 20, 21, 5, 6, 12, 18, 24, 3, 9, 15, 16, 22. Nghĩa là, làn đầu tiên giữ nguyên vị trí, trong khi làn thứ hai trở thành làn thứ 7, và liên tục lặp lại như thế.
+            Trong bước Pi, các lane được sắp xếp lại. Thứ tự mới của các lane lần lượt là 1, 7, 13, 19, 25, 4, 10, 11, 17, 23, 2, 8, 14, 20, 21, 5, 6, 12, 18, 24, 3, 9, 15, 16, 22. Nghĩa là lane đầu tiên giữ nguyên vị trí, lane thứ hai trở thành lane thứ 7, và tiếp tục lặp lại như vậy.
           </p>
           <div class="stateTransitionContainer">
-            <div>
-              <p class="stateDescription">Trạng thái trước khi tính toán:</p>
+            <div class="statePanel">
+              <p class="stateDescription">State trước khi tính toán:</p>
               <ol class="state">
               </ol>
             </div>
-            <div>
-              <p class="stateDescription">Trạng thái sau khi tính toán:</p>
+            <div class="statePanel">
+              <p class="stateDescription">State sau khi tính toán:</p>
               <ol class="state hidecursor">
               </ol>
             </div>
@@ -1355,16 +1292,16 @@
         </section>
         <section id="squeezeChiStep">
           <p>
-            Trong bước Chi, đầu tiên chúng ta chia trạng thái thành các nhóm 5-làn, sau đó chọn bit đang xét và hai bit bên dưới nó trong cùng một nhóm. Kết quả được tính theo công thức: <span class="greencolor">xanh lá</span> xor ( (not <span class="goldcolor">vàng</span>) and <span class="redcolor">đỏ</span> ).
+            Trong bước Chi, trước hết chúng ta chia State thành các nhóm 5 lane, sau đó chọn bit đang xét và hai bit bên dưới nó trong cùng một nhóm. Kết quả được tính theo công thức: <span class="greencolor">xanh lá</span> xor ( (not <span class="goldcolor">vàng</span>) and <span class="redcolor">đỏ</span> ).
           </p>
           <div class="stateTransitionContainer">
-            <div>
-              <p class="stateDescription">Trạng thái trước khi tính toán:</p>
+            <div class="statePanel">
+              <p class="stateDescription">State trước khi tính toán:</p>
               <ol class="state">
               </ol>
             </div>
-            <div>
-              <p class="stateDescription">Trạng thái sau khi tính toán:</p>
+            <div class="statePanel">
+              <p class="stateDescription">State sau khi tính toán:</p>
               <ol class="state hidecursor">
               </ol>
             </div>
@@ -1373,18 +1310,17 @@
         </section>
         <section id="squeezeIotaStep">
           <p>
-            Trong bước Iota, chỉ có làn đầu tiên bị thay đổi, trong khi phần còn lại được giữ nguyên. Các bit của làn đầu tiên được xor với một hằng số, được cho bên dưới. Lưu ý rằng hằng số được sử dụng sẽ phụ thuộc vào số thứ tự của vòng (round).
+            Trong bước Iota, chỉ có lane đầu tiên thay đổi, trong khi phần còn lại được giữ nguyên. Các bit của lane đầu tiên được XOR với một hằng số như bên dưới. Lưu ý rằng hằng số được dùng phụ thuộc vào số thứ tự của vòng (round).
           </p>
           <div class="stateTransitionContainer">
             <ol id="squeezeIotaRoundConst"></ol>
-            <br>
-            <div>
-              <p class="stateDescription">Trạng thái trước khi tính toán:</p>
+            <div class="statePanel">
+              <p class="stateDescription">State trước khi tính toán:</p>
               <ol class="state">
               </ol>
             </div>
-            <div>
-              <p class="stateDescription">Trạng thái sau khi tính toán:</p>
+            <div class="statePanel">
+              <p class="stateDescription">State sau khi tính toán:</p>
               <ol class="state hidecursor">
               </ol>
             </div>
@@ -1404,10 +1340,8 @@
         <p class="result"></p>
         <p>Và đó là kết quả cuối cùng của chúng ta!</p>
       </section>
-        
 
     </section>
-
 
   <script type="module">
 
@@ -1415,19 +1349,11 @@
 
     let elQaSections = document.querySelectorAll('.qa')
     for (let i = 0; i<elQaSections.length; i++) {
-      elQaSections[i].onclick = () => elQaSections[i].classList.toggle('expanded')
-    }
-
-    // state:
-    /*
-      {
-        flavor: 'sha3-256',
-        xofLength: 345,
-        inputMethod: 'string', 'file', 'bytes',
-        inputString: '...',
-        error: 'this n that occured'
+      let elQaTitle = elQaSections[i].querySelector('h3')
+      if (elQaTitle) {
+        elQaTitle.onclick = () => elQaSections[i].classList.toggle('expanded')
       }
-    */
+    }
 
     let state = {
       flavor: 'sha3-256',
@@ -1475,19 +1401,19 @@
     elShakeLength.oninput = function() {
       let val = this.value.trim()
       if (!val) {
-        state.xofError = 'Error: Shake128 and shake256 require a non-empty bit-length. You provided an empty string.'
+        state.xofError = 'Lỗi: SHAKE128 và SHAKE256 yêu cầu độ dài bit không được để trống. Bạn đã nhập chuỗi rỗng.'
       }
       else if (Number(val)==NaN) {
-        state.xofError = 'Error: Shake128 and shake256 require a non-empty bit-length. The value should be a number.'
+        state.xofError = 'Lỗi: SHAKE128 và SHAKE256 yêu cầu độ dài bit không được để trống. Giá trị phải là số.'
       }
       else if (Number(val)==0 || Number(val)==-0 || (val)==Infinity || Number(val)==-Infinity || !Number.isInteger( Number(val) ) || Number(val)<0 ) {
-        state.xofError = 'Error: Shake128 and shake256 require a non-empty bit-length. The value should be a positive integer.'
+        state.xofError = 'Lỗi: SHAKE128 và SHAKE256 yêu cầu độ dài bit không được để trống. Giá trị phải là số nguyên dương.'
       }
       else if (Number(val) > 10**4) {
-        state.xofError = 'Error: Shake128 and shake256 bit-length should be less than 10^4. Values above this limit are possible, but are not supported by this website.'
+        state.xofError = 'Lỗi: Độ dài bit của SHAKE128 và SHAKE256 phải nhỏ hơn 10^4. Giá trị lớn hơn giới hạn này vẫn có thể dùng về mặt lý thuyết, nhưng trang web hiện không hỗ trợ.'
       }
       else if (Number(val) % 8) {
-        state.xofError = 'Error: Shake128 and shake256 bit-length should be a multiple of 8, so that the output can be represented as bytes.'
+        state.xofError = 'Lỗi: Độ dài bit của SHAKE128 và SHAKE256 phải là bội số của 8 để đầu ra có thể biểu diễn theo byte.'
       }
       else {
         state.xofError = ''
@@ -1498,7 +1424,6 @@
         state.squeezeBlockView = 0
       }
 
-      // shake length change doesnt matter for absorbing stage
       updatePage()
     }
 
@@ -1515,15 +1440,14 @@
       elStringInput.value = ''
       elBitsnBytesInput.value = ''
       elFileInput.value = ''
-      if (state.inputMethod=='file') state.inputError = 'Error: No files provided yet.'
+      if (state.inputMethod=='file') state.inputError = 'Lỗi: Chưa có tệp nào được cung cấp.'
       updatePage()
     }
-
 
     let elStringInput = document.getElementById('stringInput')
     elStringInput.oninput = function () {
       if (this.value.length > 10**4) {
-        state.inputError = `Error: Input is too long. Max allowed length is 10^4 characters. Values above this limit are possible, but are not supported by this website.`
+        state.inputError = 'Lỗi: Dữ liệu đầu vào quá dài. Độ dài tối đa được hỗ trợ là 10^4 ký tự. Giá trị lớn hơn giới hạn này vẫn có thể dùng về mặt lý thuyết, nhưng trang web hiện không hỗ trợ.'
         updatePage()
         return
       }
@@ -1546,10 +1470,10 @@
       state.squeezeBlockView = 0
       if ( /[^0-9a-fA-F+\-\s]/g.test(val) ) { // error
         let badChar = val.split('').filter(a => /[^0-9a-fA-F+\-\s]/g.test(a) )[0]
-        state.inputError = `Error: Input should consist of hex digits (0-9, a-f, A-F), pluses and minuses (+, -), and whitespace. Your input contains: ${badChar}.`
+        state.inputError = `Lỗi: Dữ liệu đầu vào chỉ được gồm chữ số hex (0-9, a-f, A-F), dấu cộng và trừ (+, -), và khoảng trắng. Dữ liệu của bạn có ký tự: ${badChar}.`
       }
       else if (val.length > 10**4) {
-        state.inputError = `Error: Input is too long. Max allowed length is 10^4 characters. Values above this limit are possible, but are not supported by this website.`
+        state.inputError = 'Lỗi: Dữ liệu đầu vào quá dài. Độ dài tối đa được hỗ trợ là 10^4 ký tự. Giá trị lớn hơn giới hạn này vẫn có thể dùng về mặt lý thuyết, nhưng trang web hiện không hỗ trợ.'
       }
       else {
         state.inputError = ''
@@ -1557,7 +1481,6 @@
 
       updatePage()
     }
-
 
     let elFileInput = document.getElementById('fileInput')
     elFileInput.ondrop = function(ev) {
@@ -1567,17 +1490,16 @@
       if (files.length==0) return
       if (files.length > 1) {
         state.inputString = ''
-        state.inputError = 'Error: You provided multiple files. Please provide only a single file.'
+        state.inputError = 'Lỗi: Bạn đã cung cấp nhiều tệp. Vui lòng chỉ cung cấp một tệp duy nhất.'
         updatePage()
         return
       }
-      
-      // 1 file
+
       state.inputString = ''
       let file = ev.dataTransfer.files[0]
       if (file.size > 10**4) {
         state.inputString = ''
-        state.inputError = 'Error: The provided file is too large. Max allowed size is 10^4 bytes (~10kb). Values above this limit are possible, but are not supported by this website.'
+        state.inputError = 'Lỗi: Tệp được cung cấp quá lớn. Kích thước tối đa được hỗ trợ là 10^4 byte (~10KB). Giá trị lớn hơn giới hạn này vẫn có thể dùng về mặt lý thuyết, nhưng trang web hiện không hỗ trợ.'
         updatePage()
         return
       }
@@ -1587,7 +1509,7 @@
       reader.onload = () => {
         let bytes = Array.from(new Uint8Array(reader.result)).map(b => b.toString(16).padStart(2,'0')).join(' ')
 
-        state.inputString = `Uploaded file (${file.size} bytes): ${bytes}`
+        state.inputString = `Tệp đã tải lên (${file.size} byte): ${bytes}`
         state.inputError = ''
         state.absorbFnView = 0
         state.absorbBlockView = 0
@@ -1597,7 +1519,6 @@
       }
     }
       
-    
 
     elFileInput.ondragover = function(ev) {
       ev.preventDefault()
@@ -1622,17 +1543,16 @@
       if (files.length==0) return
       if (files.length > 1) {
         state.inputString = ''
-        state.inputError = 'Error: You provided multiple files. Please provide only a single file.'
+        state.inputError = 'Lỗi: Bạn đã cung cấp nhiều tệp. Vui lòng chỉ cung cấp một tệp duy nhất.'
         updatePage()
         return
       }
-      
-      // 1 file
+
       state.inputString = ''
       let file = elInvisibleFileInput.files[0]
       if (file.size > 10**4) {
         state.inputString = ''
-        state.inputError = 'Error: The provided file is too large. Max allowed size is 10^4 bytes (~10kb). Values above this limit are possible, but are not supported by this website.'
+        state.inputError = 'Lỗi: Tệp được cung cấp quá lớn. Kích thước tối đa được hỗ trợ là 10^4 byte (~10KB). Giá trị lớn hơn giới hạn này vẫn có thể dùng về mặt lý thuyết, nhưng trang web hiện không hỗ trợ.'
         updatePage()
         return
       }
@@ -1641,7 +1561,7 @@
       reader.readAsArrayBuffer(file)
       reader.onload = () => {
         let bytes = Array.from(new Uint8Array(reader.result)).map(b => b.toString(16).padStart(2,'0')).join(' ')
-        state.inputString = `Uploaded file (${file.size} bytes): ${bytes}`
+        state.inputString = `Tệp đã tải lên (${file.size} byte): ${bytes}`
         state.inputError = ''
         state.absorbFnView = 0
         state.absorbBlockView = 0
@@ -1656,7 +1576,6 @@
       state.squeezeBlockView = 0
       updatePage()
     }
-
 
     let elAbsorbBlockSelector = document.getElementById('absorbBlockSelector')
     elAbsorbBlockSelector.onchange = function(ev) {
@@ -1767,8 +1686,6 @@
     roundConst[21] = [1,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 1,0,0,0,0,0,0,0, 1,0,0,0,0,0,0,0].reverse()
     roundConst[22] = [0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 1,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,1].reverse()
     roundConst[23] = [1,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 1,0,0,0,0,0,0,0, 0,0,0,0,0,0,0,0, 1,0,0,0,0,0,0,0, 0,0,0,0,1,0,0,0].reverse()
-    
-
 
     function resetView() {
 
@@ -1777,21 +1694,15 @@
       elImSelector.value = 'string'
       elStringInput.value = 'Hello world!'
 
-
     }
 
-
     function updatePage() {
-      ////
-
-
       if (state.flavor=='shake128' || state.flavor=='shake256') {
         elShakePart.style.display = ''
       }
       else {
         elShakePart.style.display = 'none'
       }
-
 
       if (state.xofError) {
         elShakeLength.classList.add('error')
@@ -1826,13 +1737,10 @@
         }
       }
 
-
       let noErrors = () => !state.inputError && !state.xofError
       let isShake = () => state.flavor=='shake128' || state.flavor=='shake256'
 
       let calc = { bits: [] } // main obj used for calculations
-      // bits: [1,0]
-
       if (noErrors()) {
         elSolution.style.display = ''
       }
@@ -1869,10 +1777,8 @@
         str1 += `</tr></tbody>`
         str2 += `</tr></tbody>`
 
-
         elBreakdown1String.innerHTML = str1
         elBreakdown2String.innerHTML = str2
-
 
       }
       else if (state.inputMethod=='bytes') {
@@ -1913,7 +1819,6 @@
         let bits1 = bytes.map(b => Number(`0x${b}`)).map(n => n.toString(2).padStart(8,'0'))
         let bits2 = bits1.map(b => b.split('').reverse().join(''))
 
-
         for (let i = 0; i<bytes.length; i++) {
           str1 += `<td> ${bits1[i]} </td>`
           str2 += `<td> ${bits2[i]} </td>`
@@ -1932,7 +1837,6 @@
         elBreakdown1File.innerHTML = str1
         elBreakdown2File.innerHTML = str2
       }
-
 
       let temp0 = calc.bits.length
       let temp1 = isShake() ? 4 : 2
@@ -2042,8 +1946,6 @@
 
       calc.squeezeSteps.pop()
 
-
-
       if (true) {
         elBlocksAfterPadding.innerHTML = createTableFromInputBlocks(calc.blocks)
 
@@ -2056,7 +1958,6 @@
           }
         }
       }
-
 
       if (true) {
         let elEmptyState = document.getElementById('emptystate')
@@ -2086,14 +1987,12 @@
           for (let i = 0; i<25; i++) {
             getXYInTable(elEmptyState, x, i).classList = 'dimred'
           }
-          
 
           getXYInTable(elEmptyState, x, y).classList = 'brightgreen'
-         
 
           elEmptyStateExpl[0].innerText = `Bit ${i+1},`
-          elEmptyStateExpl[1].innerText = `Lane ${y+1},`
-          elEmptyStateExpl[2].innerText = `Slice ${x+1}`
+          elEmptyStateExpl[1].innerText = `lane ${y+1},`
+          elEmptyStateExpl[2].innerText = `slice ${x+1}`
           
         }
 
@@ -2129,13 +2028,11 @@
           document.getElementById('absorbChiStep'),
         ]
 
-
         let visibleStep
         if (state.absorbFnView==0) visibleStep = 0
         else {
           visibleStep = (state.absorbFnView % 5) + 1
         }
-
 
         for (let i = 0; i<elAbsorbSteps.length; i++) {
           if (visibleStep === i) {
@@ -2303,7 +2200,6 @@
         }
       }
 
-
       if ( isShake() ) {
         let elSqueezeSteps = [
           document.getElementById('squeezeTakeStep'),
@@ -2314,13 +2210,11 @@
           document.getElementById('squeezeChiStep'),
         ]
 
-
         let visibleStep
         if (state.squeezeFnView==0) visibleStep = 0
         else {
           visibleStep = (state.squeezeFnView % 5) + 1
         }
-
 
         for (let i = 0; i<elSqueezeSteps.length; i++) {
           if (visibleStep === i) {
@@ -2463,12 +2357,9 @@
         elResult.innerHTML = outputBytes.map((b,ind) => `<span class="${ind%2 ? 'pinkcolor': 'greencolor'}">${b.toString(16).padStart(2,'0')}</span>`).join(' ')
       }
 
-
     }
 
     
-    
-
 
     let elAbsorbXorInputBlock = document.getElementById('absorbXorInputBlock')
 
@@ -2487,10 +2378,6 @@
         lis[i].classList.add('perished')
       }
     }
-
-
-
-
 
     let elAbsorbXorBeforeState = document.querySelectorAll('#absorbXorStep .state')[0]
     let elAbsorbXorAfterState = document.querySelectorAll('#absorbXorStep .state')[1]
@@ -2540,8 +2427,6 @@
         `
       }
 
-
-
     }
 
     function absorbIotaEnterHandler (i) {
@@ -2557,7 +2442,6 @@
       let x = i % 64
       let y = Math.floor(i / 64)
       let round = Math.floor(state.absorbFnView/5)-1
-
 
       for (let i = 0; i<64; i++) {
         getNinTable(elAbsorbIotaBeforeState, i).classList = 'gray'
@@ -2637,7 +2521,6 @@
       let str1 = `<span class="white">${getNinTable(elAbsorbThetaAfterState, i).innerText}</span> = xor( ${arr1.join(', ')} )`
       document.querySelector('#absorbThetaStep .fillin').innerHTML = str1
 
-
     }
 
     function absorbRhoEnterHandler (i) {
@@ -2664,7 +2547,6 @@
       getXYInTable(elAbsorbRhoBeforeState, (x-shiftAmt[y]+64+7)%64, y).classList = 'gray2'
       getXYInTable(elAbsorbRhoBeforeState, (x-shiftAmt[y]+64+8)%64, y).classList = 'gray3'
       getXYInTable(elAbsorbRhoBeforeState, (x-shiftAmt[y]+64+9)%64, y).classList = 'gray4'
-      
 
       getXYInTable(elAbsorbRhoAfterState, x, y).classList = 'white'
       getXYInTable(elAbsorbRhoBeforeState, (x-shiftAmt[y]+64)%64, y).classList = 'brightgreen'
@@ -2676,8 +2558,6 @@
         &nbsp;&nbsp;
         <span class="white">${shiftAmt[y]}</span>
       `
-
-
 
     }
 
@@ -2719,8 +2599,6 @@
       let ys = Math.floor(y/5)*5
       let y1 = ys + ((y%5) + 1 ) % 5
       let y2 = ys + ((y%5) + 2 ) % 5
-      
-
 
       for (let i = 0; i<64; i++) {
         for (let j = 0; j<5; j++) {
@@ -2745,9 +2623,6 @@
       not <span class="brightgold">${p2.innerText}</span>
       ) and <span class="brightred">${p3.innerText}</span>
       )`
-
-
-
 
     }   
 
@@ -2805,14 +2680,6 @@
       document.querySelector('#absorbChiStep .fillin').innerHTML = ''
     }
 
-
-
-
-
-
-
-
-
     
     let elSqueezeIotaRoundConst = document.getElementById('squeezeIotaRoundConst')
     elSqueezeIotaRoundConst.onmouseenter = () => {
@@ -2830,8 +2697,6 @@
       }
     }
 
-
-
     let elSqueezeTakeBeforeState = document.querySelectorAll('#squeezeTakeStep .state')[0]
 let elSqueezeTakeAfterState = document.querySelectorAll('#squeezeTakeStep .state')[1]
 let elSqueezeThetaBeforeState = document.querySelectorAll('#squeezeThetaStep .state')[0]
@@ -2844,7 +2709,6 @@ let elSqueezeChiBeforeState = document.querySelectorAll('#squeezeChiStep .state'
 let elSqueezeChiAfterState = document.querySelectorAll('#squeezeChiStep .state')[1]
 let elSqueezeIotaBeforeState = document.querySelectorAll('#squeezeIotaStep .state')[0]
 let elSqueezeIotaAfterState = document.querySelectorAll('#squeezeIotaStep .state')[1]
-
 
 function squeezeTakeEnterHandler (i) {
   // nothing here
@@ -2863,7 +2727,6 @@ function squeezeIotaEnterHandler (i) {
   let x = i % 64
   let y = Math.floor(i / 64)
   let round = Math.floor(state.squeezeFnView/5)-1 // todo
-
 
   for (let i = 0; i<64; i++) {
     getNinTable(elSqueezeIotaBeforeState, i).classList = 'gray'
@@ -2943,7 +2806,6 @@ function squeezeThetaEnterHandler (i) {
   let str1 = `<span class="white">${getNinTable(elSqueezeThetaAfterState, i).innerText}</span> = xor( ${arr1.join(', ')} )`
   document.querySelector('#squeezeThetaStep .fillin').innerHTML = str1
 
-
 }
 
 function squeezeRhoEnterHandler (i) {
@@ -2970,7 +2832,6 @@ function squeezeRhoEnterHandler (i) {
   getXYInTable(elSqueezeRhoBeforeState, (x-shiftAmt[y]+64+7)%64, y).classList = 'gray2'
   getXYInTable(elSqueezeRhoBeforeState, (x-shiftAmt[y]+64+8)%64, y).classList = 'gray3'
   getXYInTable(elSqueezeRhoBeforeState, (x-shiftAmt[y]+64+9)%64, y).classList = 'gray4'
-  
 
   getXYInTable(elSqueezeRhoAfterState, x, y).classList = 'white'
   getXYInTable(elSqueezeRhoBeforeState, (x-shiftAmt[y]+64)%64, y).classList = 'brightgreen'
@@ -2982,8 +2843,6 @@ function squeezeRhoEnterHandler (i) {
     &nbsp;&nbsp;
     <span class="white">${shiftAmt[y]}</span>
   `
-
-
 
 }
 
@@ -3025,8 +2884,6 @@ function squeezeChiEnterHandler (i) {
   let ys = Math.floor(y/5)*5
   let y1 = ys + ((y%5) + 1 ) % 5
   let y2 = ys + ((y%5) + 2 ) % 5
-  
-
 
   for (let i = 0; i<64; i++) {
     for (let j = 0; j<5; j++) {
@@ -3052,12 +2909,7 @@ function squeezeChiEnterHandler (i) {
   ) and <span class="brightred">${p3.innerText}</span>
   )`
 
-
-
-
 }   
-
-
 
 function squeezeTakeLeaveHandler () {
   // nothing to put here
@@ -3106,13 +2958,6 @@ function squeezeChiLeaveHandler () {
   document.querySelector('#squeezeChiStep .fillin').innerHTML = ''
 }
 
-
-
-
-
-
-
-
     // [[number]]
     function createTableFromInputBlocks(arr ) {
       return arr.map(bl => '<li>'+ bl.map(bit => '<span>' + bit + '</span>').join('') +'</li>').join('')
@@ -3135,12 +2980,6 @@ function squeezeChiLeaveHandler () {
       }
       return str
     }
-
-
-
-
-
-
 
   </script>
 </body>
