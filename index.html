@@ -217,10 +217,7 @@
       #absorbingphase,
       #nonshakesqueezingphase,
       #squeezingphase {
-        margin-top: 120px;
-      }
-      #solution {
-        margin-bottom: 240px;
+        margin-top: 100px;
       }
       #absorbingphase .fillin,
       #squeezingphase .fillin {
@@ -471,7 +468,7 @@
     </section>
 
     <section id="solution">
-      <h1>1. Thu được mảng bit</h1>
+      <h2>1. Thu được mảng bit</h2>
 
       <section id="stringtobits">
         <p>
@@ -527,7 +524,7 @@
       </p>
 
       <section id="paddingsection">
-        <h1>2. Thêm padding và chia thành các block</h1>
+        <h2>2. Thêm padding và chia thành các block</h2>
         <p>
           Padding là quá trình thêm các bit dư thừa vào một mảng để mảng đó thỏa mãn một điều kiện nhất định. Đối với
           SHA-3, quy trình chung như sau:
@@ -630,7 +627,7 @@
       </section>
 
       <section id="absorbingphase">
-        <h1>3. Giai đoạn “Hấp thụ”</h1>
+        <h2>3. Giai đoạn “Hấp thụ”</h2>
         <p>
           Bây giờ chúng ta đã có <span class="fillin"></span> khối đầu vào và State (ban đầu là toàn số 0), chúng ta có
           thể chuyển sang bước tính toán của <span class="important1">giai đoạn hấp thụ (absorbing phase)</span>. Giai
@@ -899,7 +896,7 @@
       </section>
 
       <section id="nonshakesqueezingphase">
-        <h1>4. Giai đoạn "Vắt"</h1>
+        <h2>4. Giai đoạn "Vắt"</h2>
         <p>
           Đối với các biến thể không phải shake, giai đoạn vắt khá đơn giản. Đầu tiên, hãy lấy d bit đầu tiên từ State
           cuối cùng. Nhóm các bit này thành các byte 8-bit. Các giá trị của d được cho dưới đây:
