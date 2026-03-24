@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trình mô phỏng thuật toán SHA-256</title>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="fav.png" type="image/png" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Trình mô phỏng thuật toán SHA-256</h1>
+
+      <h2>Nhập thông điệp của bạn tại đây:</h2>
+      <input type="text" id="message" value="" />
+
+      <h2>Mã băm kết quả (Hash)</h2>
+      <p class="important center final bytes" data="hash"></p>
+
+      <hr />
+
+      <h2>Bước 1. Chuẩn bị thông điệp (Preprocessing)</h2>
+      <p>
+        Hiện tại, thông điệp của bạn dài <code data="len">...</code> bits (<code
+          data="bytelen"
+          >...</code
+        >
+        bytes). Chúng ta cần thêm độ dài của thông điệp (dưới dạng số nguyên
+        64-bit) vào cuối và đảm bảo tổng độ dài phải là bội số của 512 bits (64
+        bytes). Ngay sau thông điệp gốc, ta thêm một bit "1", sau đó là các bit
+        "0" để lấp đầy khoảng trống cho đến khi đạt độ dài yêu cầu.
+      </p>
+
+      <p class="important center">
+        <span class="note center">Thông điệp gốc</span>
+        <span data="bytemsg" class="block bytes x16"></span>
+        <span class="block">↓</span>
+        <span class="note center">Thông điệp sau khi chuẩn hóa (đã đệm)</span>
+        <span data="normalized" class="block bytes x16"></span>
+      </p>
+
+      <p>
+        Trong sơ đồ trên, các ô màu xám đại diện cho phần **đệm (padding)** và
+        các ô màu đỏ hiển thị **độ dài thông điệp** đã được mã hóa.
+      </p>
+
+      <h2>Bước 2. Giá trị băm khởi tạo và Các hằng số vòng lặp</h2>
+      <p>
+        Để kết quả băm trông ngẫu nhiên nhất có thể, thuật toán cần các giá trị
+        khởi đầu. Trong SHA-256, các giá trị này rất minh bạch: chúng được lấy
+        từ phần phân số của căn bậc hai và căn bậc ba của các số nguyên tố.
+      </p>
+      <p>
+        Chúng ta cần 8 giá trị băm khởi tạo (<b>h</b>) lấy từ căn bậc hai của 8
+        số nguyên tố đầu tiên (2, 3, ..., 19) và 64 hằng số vòng lặp (<b>k</b>)
+        lấy từ căn bậc ba của 64 số nguyên tố đầu tiên (2, 3, ..., 311).
+      </p>
+
+      <div class="column">
+        <p class="important center" id="h">
+          <span class="block">
+            <a id="nexth" class="noselect">←</a>
+            <b
+              >h<sub><span class="num">0</span></sub></b
+            >
+            <a id="prevh" class="noselect">→</a>
+          </span>
+          <span class="block bytes"
+            >Căn bậc hai của <span class="prime">2</span></span
+          >
+          <span class="block">↓</span>
+          <span class="note">Biểu diễn số thập phân</span>
+          <span class="block bytes dec">1.4142135623</span>
+          <span class="block">↓</span>
+          <span class="note">Lấy phần phân số</span>
+          <span class="block bytes frac">0.4142135623</span>
+          <span class="block">↓</span>
+          <span class="note">Chuyển sang hệ HEX (32-bit)</span>
+          <span class="block bytes hex">0.6a09e667</span>
+          <span class="block">↓</span>
+          <span class="note">Giá trị khởi tạo cuối cùng</span>
+          <span class="block bytes final">6A 09 E6 67</span>
+        </p>
+
+        <p class="important center" id="k">
+          <span class="block">
+            <a id="nextk" class="noselect">←</a>
+            <b
+              >k<sub><span class="num">0</span></sub></b
+            >
+            <a id="prevk" class="noselect">→</a>
+          </span>
+          <span class="block bytes"
+            >Căn bậc ba của <span class="prime">2</span></span
+          >
+          <span class="block">↓</span>
+          <span class="note">Biểu diễn số thập phân</span>
+          <span class="block bytes dec">1.2599210498</span>
+          <span class="block">↓</span>
+          <span class="note">Lấy phần phân số</span>
+          <span class="block bytes frac">0.2599210498</span>
+          <span class="block">↓</span>
+          <span class="note">Chuyển sang hệ HEX</span>
+          <span class="block bytes hex">0.428a2f98</span>
+          <span class="block">↓</span>
+          <span class="note">Hằng số vòng lặp</span>
+          <span class="block bytes final">42 8a 2f 98</span>
+        </p>
+      </div>
+
+      <h2>Bước 3. Chia khối và Vòng lặp nén</h2>
+      <ol>
+        <li>Chia thông điệp đã chuẩn hóa thành các khối (chunks) 512-bit.</li>
+        <li>
+          Với mỗi khối, thực hiện 64 vòng lặp biến đổi các giá trị băm
+          <b>h</b> bằng các phép toán bitwise.
+        </li>
+      </ol>
+
+      <h2>Bước 3.1. Mở rộng thông điệp (Message Schedule)</h2>
+      <p>
+        Mỗi khối 512-bit được chia thành 16 từ (word) 32-bit. Để chạy đủ 64 vòng
+        lặp, ta cần tạo thêm 48 từ nữa (tổng cộng 64 từ <b>w<sub>i</sub></b
+        >) bằng công thức:
+      </p>
+      <p class="center important">
+        w<sub>i</sub> = w<sub>i-16</sub> + s<sub>0</sub>(w<sub>i-15</sub>) +
+        w<sub>i-7</sub> + s<sub>1</sub>(w<sub>i-2</sub>)
+      </p>
+
+      <p>
+        Trong đó <code>⋙</code> là xoay phải (circular shift), <code>≫</code> là
+        dịch phải (right shift) và <code>⊕</code> là phép toán XOR.
+      </p>
+
+      <p class="center important" id="w">
+        <span class="block multichunks">
+          <a class="nextchunk noselect">←</a>
+          <b>Khối dữ liệu (Chunk) <span class="chunk">0</span></b>
+          <a class="prevchunk noselect">→</a>
+        </span>
+        <span class="block">
+          <a id="nextw" class="noselect">←</a>
+          <b
+            >Từ thông điệp w<sub><span class="num">0</span></sub></b
+          >
+          <a id="prevw" class="noselect">→</a>
+        </span>
+        <span class="note" id="w-source">Lấy trực tiếp từ thông điệp</span>
+        <span class="block bytes x16 gray" data="w-msg"></span>
+        <span class="block">↓</span>
+        <span class="block bytes final" data="w"></span>
+      </p>
+
+      <h2>Bước 3.2. Thực hiện các vòng lặp băm</h2>
+      <p>
+        Chúng ta sử dụng 8 biến tạm thời <b>A, B, C, D, E, F, G, H</b> được khởi
+        tạo bằng giá trị <b>h<sub>0</sub>-h<sub>7</sub></b> hiện tại. Qua mỗi
+        vòng lặp, các biến này sẽ thay đổi vị trí và giá trị dựa trên các hàm
+        logic phi tuyến tính.
+      </p>
+
+      <p class="note center">
+        Nhấp vào các ô vuông trong sơ đồ dưới đây để xem chi tiết quá trình tính
+        toán tại vòng lặp đó.
+      </p>
+
+      <p class="important center" id="round">
+        <span class="block">
+          <a id="nextr" class="noselect">←</a>
+          <b>Vòng lặp (Round) <span class="num">0</span></b>
+          <a id="prevr" class="noselect">→</a>
+        </span>
+      </p>
+
+      <p class="center" id="svgholder">
+        <img
+          src="sha256.svg"
+          style="max-width: 800px"
+          alt="Sơ đồ vòng lặp SHA-256"
+        />
+      </p>
+
+      <p>
+        Sau 64 vòng lặp, các giá trị cuối cùng của <b>A...H</b> sẽ được cộng vào
+        <b>h<sub>0</sub>...h<sub>7</sub></b> ban đầu để tạo ra kết quả cho khối
+        tiếp theo.
+      </p>
+
+      <h2>Mã băm kết quả cuối cùng</h2>
+      <p class="important center final bytes" data="hash"></p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="sha256.js"></script>
+  </body>
+</html>
