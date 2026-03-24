@@ -133,10 +133,15 @@
         text-align: center;
       }
       .normaltable {
-        font-size: large;
+        border-collapse: collapse;
+        border: 1px solid var(--black);
+      }
+      .normaltable th,
+      .normaltable td {
+        border: 1px solid var(--black);
       }
       .normaltable thead td {
-        border-bottom: 1px solid var(--black);
+        border-bottom: 2px solid var(--black);
         font-family: "Roboto Slab", serif;
         padding: 0 10px;
       }
@@ -347,7 +352,10 @@
   </head>
 
   <body>
-    <a id="githubLink" href="https://github.com/nvbangg/demo-sha">GitHub</a>
+    <div style="position:absolute; top:20px; right:20px; display:flex; flex-direction:row; align-items:center; gap:10px; z-index:1000;">
+      <a href="https://nvbangg.github.io/demo-sha/sha2" target="_blank" rel="noopener noreferrer">SHA-2</a>
+      <a href="https://github.com/nvbangg/demo-sha" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
 
     <section class="qa">
       <span class="hider">(–)</span>
@@ -389,12 +397,40 @@
       <span class="expander">(+)</span>
       <h3>Kiến trúc giải thuật</h3>
       <h2>1. Giới thiệu về State</h2>
-      <p>
-        Ngoài các khối đầu vào, chúng ta còn có khái niệm về <span class="important1">state</span>. State là một chuỗi
-        gồm 1600 bit, được dùng như một bản nháp tính toán để tạo mã băm. Ban đầu, toàn bộ 1600 bit đều bằng 0. Trong
-        suốt hướng dẫn này, State sẽ được hiển thị dưới dạng <span class="important2">25 lane</span> và
-        <span class="important2">64 slice</span>. State ban đầu:
-      </p>
+      <p>State là mảng 3 chiều làm bộ nhớ tạm trong quá trình tính toán. Giá trị khởi tạo ban đầu đều bằng 0. State gồm 2 phần: Rate (r) và Capacity (c).</p>
+      <ul>
+        <li>Rate (r) là phần State có thể tương tác trực tiếp với input.</li>
+        <li>Capacity (c) là phần State nội bộ, không tiếp xúc trực tiếp với input.</li>
+      </ul>
+      <p>Trong SHA-3, tổng r + c luôn bằng 1600 bit.</p>
+
+      <p><strong>Bảng giá trị r, c, d của SHA-3</strong></p>
+      <table class="normaltable" style="width:100%; max-width:640px; margin:0 0 0 0;">
+        <thead>
+          <tr>
+            <td><strong>SHA-3 variant</strong></td>
+            <td><strong>r (rate)</strong></td>
+            <td><strong>c (capacity)</strong></td>
+            <td><strong>d (số bit độ dài đầu ra)</strong></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>sha3-224</td><td>1152 bits</td><td>448 bits</td><td>224 bits</td></tr>
+          <tr><td>sha3-256</td><td>1088 bits</td><td>512 bits</td><td>256 bits</td></tr>
+          <tr><td>sha3-384</td><td>832 bits</td><td>768 bits</td><td>384 bits</td></tr>
+          <tr><td>sha3-512</td><td>576 bits</td><td>1024 bits</td><td>512 bits</td></tr>
+          <tr><td>shake128</td><td>1344 bits</td><td>256 bits</td><td>tùy ý</td></tr>
+          <tr><td>shake256</td><td>1088 bits</td><td>512 bits</td><td>tùy ý</td></tr>
+        </tbody>
+      </table>
+
+      <figure style="max-width: 100%; margin: 16px 0;">
+        <img src="assets/state.png" alt="Mô tả các thành phần của state" style="max-width: 100%; height: auto;" />
+        <figcaption style="text-align: center; font-size: 0.95em; margin-top: 8px;">Hình mô tả các thành phần của state</figcaption>
+      </figure>
+
+      <p>Lưu ý: State được biểu diễn theo hệ tọa độ tâm (-2,-1,0,1,2 mod 5 → 3,4,0,1,2). Thứ tự ánh xạ bit vào State được thực hiện theo trình tự ưu tiên các trục: z → x → y.</p>
+      <p>Tuy nhiên, nhằm mục đích minh họa, trong mô phỏng này State sẽ được hiển thị qua 25 lane x 64 slice với khởi tạo ban đầu như sau:</p>
 
       <section id="introtostate">
         <div class="stateContainer">
