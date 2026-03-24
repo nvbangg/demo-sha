@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>SHA-1 Chuẩn + Full Step</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-white p-6">
+
+<div class="max-w-6xl mx-auto">
+  <h1 class="text-3xl font-bold mb-4">🔐 SHA-1</h1>
+
+  <textarea id="input" class="w-full p-3 text-black rounded mb-4" placeholder="Nhập text..."></textarea>
+  <button onclick="runSHA1()" class="bg-blue-500 px-4 py-2 rounded">Chạy SHA-1</button>
+
+  <div id="output" class="mt-6 space-y-3 max-h-[600px] overflow-y-auto"></div>
+</div>
+
+<script>
+function rotl(n,b){return ((n<<b)|(n>>> (32-b)))>>>0}
+function add(...args){return args.reduce((a,b)=>(a+b)>>>0,0)}
+
+function sha1(msg){
+  let encoder=new TextEncoder();
+  let data=Array.from(encoder.encode(msg));
+
+  let bitLen = data.length * 8;
+
+  // padding
+  data.push(0x80);
+  while(data.length % 64 !== 56) data.push(0);
+
+  // append length 64-bit
+  let high = Math.floor(bitLen / 0x100000000);
+  let low = bitLen >>> 0;
+
+  for(let i=3;i>=0;i--) data.push((high >>> (i*8)) & 255);
+  for(let i=3;i>=0;i--) data.push((low >>> (i*8)) & 255);
+
+  let h0=0x67452301;
+  let h1=0xEFCDAB89;
+  let h2=0x98BADCFE;
+  let h3=0x10325476;
+  let h4=0xC3D2E1F0;
+
+  let steps=[];
+
+  for(let i=0;i<data.length;i+=64){
+    let w=new Array(80);
+
+    for(let j=0;j<16;j++){
+      w[j]=((data[i+4*j]<<24) | (data[i+4*j+1]<<16) | (data[i+4*j+2]<<8) | (data[i+4*j+3]))>>>0;
+    }
+
+    for(let j=16;j<80;j++){
+      let val = w[j-3]^w[j-8]^w[j-14]^w[j-16];
+      w[j]=rotl(val,1);
+
+      // In bước mở rộng thông điệp (chỉ in vài phần tử đầu cho dễ nhìn)
+      if(j <= 79){
+        steps.push(`W[${j}] = ROTL( W[${j-3}] ^ W[${j-8}] ^ W[${j-14}] ^ W[${j-16}] ) = ${w[j].toString(16).padStart(8,'0')}`);
+      }
+    }
+
+    let a=h0,b=h1,c=h2,d=h3,e=h4;
+
+    for(let j=0;j<80;j++){
+      let f,k;
+
+      if(j<20){f=(b & c) | ((~b >>> 0) & d);k=0x5A827999}
+      else if(j<40){f=b ^ c ^ d;k=0x6ED9EBA1}
+      else if(j<60){f=(b & c) | (b & d) | (c & d);k=0x8F1BBCDC}
+      else{f=b ^ c ^ d;k=0xCA62C1D6}
+
+      let temp = add(rotl(a,5), f, e, k, w[j]);
+
+      e=d;
+      d=c;
+      c=rotl(b,30);
+      b=a;
+      a=temp;
+
+      steps.push(`Round ${j}: a=${a.toString(16).padStart(8,'0')} b=${b.toString(16).padStart(8,'0')} c=${c.toString(16).padStart(8,'0')} d=${d.toString(16).padStart(8,'0')} e=${e.toString(16).padStart(8,'0')}`);
+    }
+
+    h0=add(h0,a);
+    h1=add(h1,b);
+    h2=add(h2,c);
+    h3=add(h3,d);
+    h4=add(h4,e);
+  }
+
+  return {
+    hash:[h0,h1,h2,h3,h4].map(x=>x.toString(16).padStart(8,'0')).join(''),
+    steps
+  };
+}
+
+function toBinary(str){
+  return Array.from(new TextEncoder().encode(str))
+    .map(b=>b.toString(2).padStart(8,'0')).join('');
+}
+
+function runSHA1(){
+  let input=document.getElementById('input').value;
+  let out=document.getElementById('output');
+  out.innerHTML='';
+
+  // B1: Nhị phân
+  let binary = toBinary(input);
+  out.innerHTML+=box('B1 - Nhị phân', binary);
+
+  // B2: Padding
+  let bin = binary + ' 1 ';
+  while(bin.length % 512 !== 448) bin += '0';
+  let len64 = binary.length.toString(2).padStart(64,'0');
+  let padded = bin+' ' + len64;
+  out.innerHTML+=box('B2 - Padding', padded);
+
+  let res=sha1(input);
+
+  out.innerHTML+=box('✅ Kết quả SHA-1',res.hash);
+
+  res.steps.forEach(s=>{
+    out.innerHTML+=box('Step',s);
+  });
+}
+
+function box(title,content){
+  return `<div class='bg-slate-800 p-3 rounded'>
+    <div class='text-blue-400 font-bold'>${title}</div>
+    <div class='text-sm break-all'>${content}</div>
+  </div>`
+}
+</script>
+
+</body>
+</html>
