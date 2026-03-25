@@ -46,7 +46,6 @@
       let h4 = 0xC3D2E1F0;
 
       let steps = [];
-      steps.push(`<img src="./anh1.png" alt="Mo_ta_anh">`);
 
       for (let i = 0; i < data.length; i += 64) {
         let w = new Array(80);
@@ -65,6 +64,7 @@
           }
         }
         steps.push(`<img src="./anh2.png" alt="Mo_ta_anh">`);
+        steps.push(`<img src="./anh3.png" alt="Mo_ta_anh">`);
         let a = h0, b = h1, c = h2, d = h3, e = h4;
 
         for (let j = 0; j < 80; j++) {
@@ -119,6 +119,8 @@
       let len64 = binary.length.toString(2).padStart(64, '0');
       let padded = bin + ' ' + len64;
       out.innerHTML += box('B2 - Padding', padded);
+      out.innerHTML += box('B3 - Các vòng lặp chính', "");
+      out.innerHTML += box('Mở rộng thông điệp', `<img src="./anh1.png" alt="Mo_ta_anh">`);
 
       let res = sha1(input);
       let tmp = res.hash;
