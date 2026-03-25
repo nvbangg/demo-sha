@@ -63,7 +63,11 @@
             steps.push(`W[${j}] = ROTL( W[${j - 3}] ^ W[${j - 8}] ^ W[${j - 14}] ^ W[${j - 16}] ) = ${w[j].toString(16).padStart(8, '0')}`);
           }
         }
-        steps.push(`<img src="./anh2.png" alt="Mo_ta_anh">`);
+        steps.push(`<div>
+  <img src="./anh2.png" alt="Mo_ta_anh">
+  <br>
+  <img src="./anh4.png" alt="Mo_ta_anh">
+</div>`);
         steps.push(`<img src="./anh3.png" alt="Mo_ta_anh">`);
         let a = h0, b = h1, c = h2, d = h3, e = h4;
 
